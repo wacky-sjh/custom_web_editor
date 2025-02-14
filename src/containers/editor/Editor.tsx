@@ -25,6 +25,7 @@ const Editor = ({ onChange }: Props) => {
           "prose max-w-none h-full border p-4 disabled:cursor-not-allowed disabled:opacity-50 [&_ol]:list-decimal [&_ul]:list-disc",
       },
     },
+    immediatelyRender: false,
   });
 
   if (!editor) {

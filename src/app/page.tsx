@@ -8,9 +8,12 @@ export default function Home() {
 
   return (
     <main>
-      <div className="w-full flex gap-2 h-screen">
+      <div className="w-full flex flex-1 gap-2 h-screen">
         <Editor onChange={setHtmlContent} />
-        <EditorContentRenderer htmlContent={htmlContent} />
+        <div className="w-full h-full">
+          <h2>Editor Content Renderer</h2>
+          <EditorContentRenderer htmlContent={htmlContent} />
+        </div>
       </div>
     </main>
   );

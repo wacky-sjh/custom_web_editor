@@ -20,8 +20,8 @@ import {
 } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Button } from "../ui/button";
-import { Image } from "lucide-react";
 import { Input } from "../ui/input";
+import ImageUploadPopover from "./ImageUploadPopover";
 
 type Props = {
   editor: Editor | null;
@@ -33,13 +33,6 @@ export default function Toolbar({ editor }: Props) {
   }
   const currentFontColor = editor.getAttributes("textStyle").color || "#000000";
   const currentHighlightColor = editor.getAttributes("highlight").color || "#FFFFFF";
-
-  const handleAddImage = () => {
-    const url = prompt("이미지 주소를 입력하세요.");
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
-  };
 
   const handleToggleLink = () => {
     const previousUrl = editor.getAttributes("link").href || "";
@@ -196,9 +189,8 @@ export default function Toolbar({ editor }: Props) {
       >
         <ListOrdered strokeWidth={`${editor.isActive("orderedList") ? 4 : 2}`} />
       </Toggle>
-      <Button size="sm" variant="ghost" onClick={handleAddImage}>
-        <Image strokeWidth={`${editor.isActive("image") ? 3 : 2}`} />
-      </Button>
+
+      <ImageUploadPopover editor={editor} />
 
       <Toggle size="sm" pressed={editor.isActive("link")} onPressedChange={handleToggleLink}>
         <Link strokeWidth={`${editor.isActive("link") ? 3 : 2}`} />
